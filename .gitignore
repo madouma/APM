@@ -1,0 +1,4 @@
+.vscode/settings.json
+*.js
+*.map
+.vscode/tasks.json

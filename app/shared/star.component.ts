@@ -1,22 +1,22 @@
-import { Component, OnChanges, Input,
-    Output, EventEmitter } from 'angular2/core';
+import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'ai-star',
-    templateUrl: 'app/shared/star.component.html',
-    styleUrls: ['app/shared/star.component.css']
+    moduleId: module.id,
+    templateUrl: 'star.component.html',
+    styleUrls: ['star.component.css']
 })
 
-export class StarComponent implements OnChanges{
+export class StarComponent implements OnChanges {
     @Input() rating: number;
-    starWidth: number; //calculated base on the rating
+    starWidth: number;
     @Output() ratingClicked: EventEmitter<string> = new EventEmitter<string>();
 
     ngOnChanges(): void {
-        this.starWidth = this.rating * 86 / 5;
+        this.starWidth = this.rating * 86/5;
     }
 
-    onClick() {
+    onClick(): void {
         this.ratingClicked.emit(`The rating ${this.rating} was clicked!`);
     }
 }

@@ -1,41 +1,37 @@
-import { Component, OnInit } from 'angular2/core';
+import { Component, OnInit } from '@angular/core';
 
 import { IProduct } from './product';
-import { ProductFilterPipe } from './product-filter.pipe';
-import { StarComponent } from '../shared/star.component';
 import { ProductService } from './product.service';
 
 @Component({
-    templateUrl: 'app/products/product-list.component.html',
-    styleUrls: ['app/products/product-list.component.css'],
-    pipes: [ProductFilterPipe],
-    directives: [StarComponent]
+    moduleId: module.id,
+    templateUrl: 'product-list.component.html',
+    styleUrls: ['product-list.component.css']
 })
 
 export class ProductListComponent implements OnInit {
-    pageTitle: string = "Product List";
-    listFilter: string;
-    imageWidth: number = 20;
-    imageMargin: number = 2;
-    showImage: boolean = false;
-    errorMessage: string;
-
-    products: IProduct[];
-
     constructor(private _productService: ProductService) { }
 
+    pageTitle: string = 'Product List';
+    imgWidth: number = 50;
+    imgPadding: number = 2;
+    showImage: boolean = false;
+    listFilter: string;
+    products: IProduct[];
+    errorMessage: string;
+
     ngOnInit(): void {
-        this._productService.getProducts()
-            .subscribe(
-                products => this.products = products,
-                error => this.errorMessage = <any>error);
+        this._productService.getProducts().subscribe(
+            products => this.products = products,
+            error => this.errorMessage = <any>error
+        )
+    } 
+
+    onRatingClicked(message: string): void {
+        this.pageTitle = 'Product List: ' + message;
     }
 
     toggleImage(): void {
         this.showImage = !this.showImage;
-    }
-
-    onRatingClicked(message: string): void {
-        this.pageTitle = 'Product List: ' + message;
     }
 }

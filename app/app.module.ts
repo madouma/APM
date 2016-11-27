@@ -12,7 +12,7 @@ import { WelcomeComponent } from './home/welcome.component';
   imports: [ 
     ProductModule,
     BrowserModule, 
-    HttpModule,
+    HttpModule, 
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
